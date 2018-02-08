@@ -73,8 +73,6 @@ $app->post('/itemDelete(/)', function (){
 })->name("itemDelete");
 
 
-
-
 /*
  * Lancement de Slim
  */
