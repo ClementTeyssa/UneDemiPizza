@@ -77,8 +77,7 @@ end;
 
         return $content;
     }
-<<<<<<< HEAD
-=======
+
 
     private function aff_catalogue_a(){
         $cat = $this->objet['3'];
@@ -117,5 +116,4 @@ end;
 end;
         return $content;
     }
->>>>>>> c3e6a45c34e6bb099ea05a505c9e8f0472779564
 }
