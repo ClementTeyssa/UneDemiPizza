@@ -19,8 +19,8 @@ class VueItem{
 			$this->objet = $obj;
 		}
 		switch ($selecteur){
-			case  VueCatalogue::AFF_ITEM:
-				$content = $this->aff_item();
+			case  VueItem::AFF_ITEM:
+				$content = $this->aff_item_entete();
 		}
 		return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
 	}
@@ -41,5 +41,7 @@ class VueItem{
 		<br>
 		
 end;
+
+		return $content;
 	}
 }

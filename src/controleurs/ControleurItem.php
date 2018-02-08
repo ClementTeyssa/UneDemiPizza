@@ -1,6 +1,9 @@
 <?php
 namespace pizza\controleurs;
 
+use pizza\models\Item;
+use pizza\vues\VueItem;
+
 class ControleurItem{
 	
 	/*
@@ -13,8 +16,8 @@ class ControleurItem{
 		// TODO: vérifier si la personne est connectée
 		$app = \Slim\Slim::getInstance();
 		$requete = $app->request();
-		$id = $requete->post('');
-		$item = Item::where('id','=',$id)->get();
+		$id = $requete->post('idItem');
+		$item = Item::getById($id);
 		$vue = new VueItem($item);
 		print $vue->render(VueItem::AFF_ITEM, $item);
 	}

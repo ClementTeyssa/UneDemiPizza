@@ -8,6 +8,7 @@
 
 namespace pizza\vues;
 use pizza\models\Item;
+use Slim\Slim;
 
 class VueCatalogue
 {
@@ -63,13 +64,14 @@ end;
                 $nom = $vehicule->nom;
                 $desc = $vehicule->description;
                 $idtem = $vehicule->id;
-                // TODO: faire l'action du form
+                $app = Slim::getInstance();
+                $r_item = $app->urlFor("item");
                 $content .= <<<end
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
                     <td>
-                        <form id="form_catalogue" method="POST" action="">
+                        <form id="form_catalogue" method="POST" action="$r_item">
                             <input type="hidden" name="idItem" value="$idtem">
                             <input type="submit" class="bouton" value="Accéder" class="bouton">
                         </form>

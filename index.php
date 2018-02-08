@@ -38,6 +38,9 @@ $app->get('/connexion(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexion();
 })->name("connexion");
 
+$app->post('/item(/)', function (){
+    (new \pizza\controleurs\ControleurItem())->aff_item();
+})->name("item");
 
 
 /*
@@ -56,6 +59,8 @@ $app->post('/connexion(/)', function (){
 $app->get('/deconnexion(/)', function (){
     (new pizza\conf\Authentication())->deconnexion();
 })->name("deconnexion");
+
+
 
 
 /*
