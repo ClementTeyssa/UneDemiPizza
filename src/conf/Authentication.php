@@ -10,6 +10,7 @@ class Authentication{
 		$u->email = $mail;
 		$u->nom = $name;
 		$u->mdp = $password;
+		$u->type = 0;
 		$u->save();
 		Authentication::authenticate($mail,$password);
 	}
