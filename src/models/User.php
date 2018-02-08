@@ -11,7 +11,7 @@ namespace pizza\models;
 
 class user extends \Illuminate\Database\Eloquent\Model
 {
-
+	
     protected $table = 'user';
     protected $primaryKey = 'email';
     public $timestamps = false;
@@ -20,4 +20,5 @@ class user extends \Illuminate\Database\Eloquent\Model
         $email = filter_var($email, FILTER_SANITIZE_STRING);
         return user::where('email', '=', $email)->first();
     }
+	
 }
