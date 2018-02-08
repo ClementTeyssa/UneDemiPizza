@@ -38,6 +38,9 @@ $app->get('/connexion(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexion();
 })->name("connexion");
 
+$app->post('/item(/)', function (){
+    (new \pizza\controleurs\ControleurItem())->aff_item();
+})->name("item");
 
 
 /*
@@ -52,6 +55,12 @@ $app->post('/inscription(/)', function (){
 $app->post('/connexion(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexionT();
 })->name("connexionT");
+
+$app->get('/deconnexion(/)', function (){
+    (new pizza\conf\Authentication())->deconnexion();
+})->name("deconnexion");
+
+
 
 
 /*

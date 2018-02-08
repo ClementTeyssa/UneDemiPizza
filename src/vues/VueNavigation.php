@@ -82,7 +82,6 @@ end;
     private function connexion(){
         $app = \Slim\Slim::getInstance();
         $r_connexion = $app->urlFor("connexion");
-        $r_accueil = $app->urlFor("accueil");
         return  <<<end
         <h1>Page de connexion</h1>
         <br>

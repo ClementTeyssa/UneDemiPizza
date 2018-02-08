@@ -8,6 +8,7 @@
 
 namespace pizza\vues;
 use pizza\models\Item;
+use Slim\Slim;
 
 class VueCatalogue
 {
@@ -35,8 +36,6 @@ class VueCatalogue
         return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
     }
 
-    // TODO: verifier en fonction de admin ou normal
-    // TODO: faire les boutons
     public function aff_catalogue(){
         return "<h1 class=\"center-align\">Catalogue</h1><br><br>".$this->aff_catalogue_v().$this->aff_catalogue_a();
     }
@@ -45,8 +44,8 @@ class VueCatalogue
         $cat = $this->objet['2'];
         $content =  <<<end
         <div class="row">
-            <div class="col s6">
-                <h3>Catalogue des véhicules</h3>
+        <div class="col s6">
+            <h3>Catalogue des véhicules</h3>
                 <br>
                 <p>$cat</p>
                 <br>
@@ -60,16 +59,23 @@ class VueCatalogue
                     </thead>
                     <tbody>
 end;
-
         $vehicules = $this->objet[0];
         foreach ($vehicules as $vehicule){
                 $nom = $vehicule->nom;
                 $desc = $vehicule->description;
+                $idtem = $vehicule->id;
+                $app = Slim::getInstance();
+                $r_item = $app->urlFor("item");
                 $content .= <<<end
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
-                    <td>BOUTON A FAIRE</td>
+                    <td>
+                        <form id="form_catalogue" method="POST" action="$r_item">
+                            <input type="hidden" name="idItem" value="$idtem">
+                            <input type="submit" class="bouton" value="Accéder" class="bouton">
+                        </form>
+                    </td>
                 </tr>
 end;
         }
@@ -81,6 +87,7 @@ end;
 
         return $content;
     }
+
 
     private function aff_catalogue_a(){
         $cat = $this->objet['3'];
@@ -116,6 +123,7 @@ end;
                     </tbody>
                 </table>
         </div class="col s6">
+        </div class="row">
 end;
         return $content;
     }

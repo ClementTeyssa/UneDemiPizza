@@ -44,6 +44,7 @@ end;
         $deco = $app->urlFor("accueil");
         $acc = $app->urlFor("accueil");
         $tab = unserialize($_COOKIE['profile']);
+        $deco = $app->urlFor('deconnexion');
         return <<<end
           <nav>
             <div class="nav-wrapper">
