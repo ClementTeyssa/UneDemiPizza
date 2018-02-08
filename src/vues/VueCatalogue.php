@@ -73,7 +73,7 @@ end;
                     <td>
                         <form id="form_catalogue" method="POST" action="$r_item">
                             <input type="hidden" name="idItem" value="$idtem">
-                            <input type="submit" class="bouton" value="Accéder" class="bouton">
+                            <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">chevron_right</i></button>
                         </form>
                     </td>
                 </tr>
@@ -102,7 +102,7 @@ end;
                         <tr>
                             <th>Nom</th>
                             <th>Description</th>
-                            <th>Reserver</th>
+                            <th>Accéder</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,11 +111,19 @@ end;
         foreach ($ateliers as $atelier) {
             $nom = $atelier->nom;
             $desc = $atelier->description;
+            $idtem = $atelier->id;
+            $app = Slim::getInstance();
+            $r_item = $app->urlFor("item");
             $content .= <<<end
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
-                    <td>BOUTON A FAIRE</td>
+                    <td>
+                        <form id="form_catalogue" method="POST" action="$r_item">
+                            <input type="hidden" name="idItem" value="$idtem">
+                            <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">chevron_right</i></button>
+                        </form>
+                    </td>
                 </tr>
 end;
         }
