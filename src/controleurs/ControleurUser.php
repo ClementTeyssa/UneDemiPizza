@@ -24,5 +24,13 @@ class ControleurUser
         $vue = new VueNavigation();
         print $vue->render(VueNavigation::AFF_INDEX);
     }
+    
+    /*
+     * Affichage de l'inscription
+     */
+    public function inscription(){
+        $vue = new VueNavigation();
+        print $vue->render(VueNavigation::AFF_INSCRIPTION);
+    }
 
 }
