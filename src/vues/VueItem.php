@@ -77,20 +77,27 @@ end;
 	}
 
 	public function aff_item_res(){
-
+        $app = Slim::getInstance();
+        $requete = $app->request();
+        $date = $requete->post('the_date');
+        $r_add = $app->urlFor("resItemT");
+        $id = $requete->post('idItem');
         return <<<end
         <h1 class="center-align">Reservation</h1>
         <div class="row center-align">
             <div class="col s6">
-                <form id="form_itemRes" method="POST" action="$r_item">
+                <form id="form_itemRes" method="POST" action="$r_cat">
+                    <label>Date de début : $date$</label>
                     
-                </form>
             </div>
             <div class="col s6">
-                <form id="form_itemRes" method="POST" action="$r_item">
-                    
-                </form>
+                    <label>Date de fin</label>
+                    <input type="hidden" name="idItem" value="$id">
+                    <input type="hidden" name="dateD" value="$date">
+                    <input type="date" name="dateF">
             </div>
+                <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add_box</i></button>
+            </form>
         </div>
 end;
 

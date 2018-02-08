@@ -25,7 +25,15 @@ class ControleurItem{
             $_SESSION['message'] = "Il y a déjà une réservation à cette date";
             $app->redirect("catalogue");
         } else {
-            $this->aff_res_item($item);
+            $res = new Reservation();
+            $res->idItem = $itemid;
+            $res->dateDeb = $date;
+            $res->dateFin = $date;
+            $tab = unserialize($_COOKIE['profile']);
+            $email = $tab[0];
+            $res->emailUser = $email;
+            $res->save();
+            $app->redirect("catalogue");
         }
     }
 	
@@ -70,10 +78,5 @@ class ControleurItem{
 		$app->redirect($app->urlFor('catalogue'));
 	}
 
-
-	public function aff_res_item($item){
-        $vue = new VueItem();
-        print $vue->render(VueItem::AFF_RES);
-    }
 
 }
