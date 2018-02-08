@@ -43,36 +43,44 @@ class VueCatalogue
         $cat = $this->objet['2'];
         $content =  <<<end
         <div class="row">
-            <div class="s6">
-                <h2>Catalogue des véhicules</h2>
+        <div class="col s6">
+            <h3>Catalogue des véhicules</h3>
                 <br>
                 <p>$cat</p>
                 <br>
                 <table class="highlight">
-                    <tr>
-                        <th>Nom</th>
-                        <th>Description</th>
-                        <th>Reserver</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Reserver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 end;
         $vehicules = $this->objet[0];
-        foreach ($vehicules as $item){
-            $vehicule = Item::getById($item);
-            if($vehicule->id_categ == 1){
+        foreach ($vehicules as $vehicule){
                 $nom = $vehicule->nom;
                 $desc = $vehicule->description;
-                $content = <<<end
+                $idtem = $vehicule->id;
+                // TODO: faire l'action du form
+                $content .= <<<end
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
-                    <td>BOUTON A FAIRE</td>
+                    <td>
+                        <form id="form_catalogue" method="POST" action="">
+                            <input type="hidden" name="idItem" value="$idtem">
+                            <input type="submit" class="bouton" value="Accéder" class="bouton">
+                        </form>
+                    </td>
                 </tr>
 end;
-            }
         }
         $content .= <<<end
+                    </tbody>
                 </table>
-        <div class="s6">
+        </div class="col s6">
 end;
 
         return $content;
@@ -113,6 +121,7 @@ end;
                     </tbody>
                 </table>
         </div class="col s6">
+        </div class="row">
 end;
         return $content;
     }

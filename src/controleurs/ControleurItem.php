@@ -13,7 +13,7 @@ class ControleurItem{
 		// TODO: vérifier si la personne est connectée
 		$app = \Slim\Slim::getInstance();
 		$requete = $app->request();
-		$id = $request->post('');
+		$id = $requete->post('');
 		$item = Item::where('id','=',$id)->get();
 		$vue = new VueItem($item);
 		print $vue->render(VueItem::AFF_ITEM, $item);
