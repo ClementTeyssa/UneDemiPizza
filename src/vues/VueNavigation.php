@@ -41,9 +41,14 @@ class VueNavigation
         $app = Slim::getInstance();
         $catalogue = $app->urlFor('catalogue');
         return <<<end
-        <h1>Accueil</h1>
-        <br>
-        <a href="$catalogue">Accéder au catalogue</a>
+        <div class = "row center-align">
+			<div class = "col s6">
+
+			</div>
+			<div class = "col s6">
+
+			</div>
+		</div>
 end;
     }
     
