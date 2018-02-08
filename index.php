@@ -26,6 +26,10 @@ $app->get('/', function (){
     (new pizza\controleurs\ControleurUser())->index();
 })->name("accueil");
 
+$app->get('/inscription(/)', function (){
+    (new pizza\controleurs\ControleurUser())->inscription();
+})->name("inscription");
+
 
 
 
