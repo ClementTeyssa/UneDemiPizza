@@ -1,7 +1,10 @@
 -- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
--- Version du serveur :  5.7.19
+--
+-- Hôte : 127.0.0.1
+-- Généré le :  jeu. 08 fév. 2018 à 11:00
+-- Version du serveur :  10.1.26-MariaDB
 -- Version de PHP :  7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -9,13 +12,14 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `ccd2018`
+-- Base de données :  `crazycharlyday`
 --
 
 -- --------------------------------------------------------
@@ -24,13 +28,11 @@ SET time_zone = "+00:00";
 -- Structure de la table `categorie`
 --
 
-DROP TABLE IF EXISTS `categorie`;
-CREATE TABLE IF NOT EXISTS `categorie` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categorie` (
+  `id` int(11) NOT NULL,
   `nom` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `description` text CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `description` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -46,15 +48,12 @@ INSERT INTO `categorie` (`id`, `nom`, `description`) VALUES
 -- Structure de la table `item`
 --
 
-DROP TABLE IF EXISTS `item`;
-CREATE TABLE IF NOT EXISTS `item` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `item` (
+  `id` int(11) NOT NULL,
   `nom` varchar(30) CHARACTER SET utf8 NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
-  `id_categ` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_categ` (`id_categ`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+  `id_categ` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `item`
@@ -87,33 +86,82 @@ INSERT INTO `item` (`id`, `nom`, `description`, `id_categ`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `id` int(11) NOT NULL,
+  `idItem` int(11) NOT NULL,
+  `emailUser` varchar(255) NOT NULL,
+  `dateDeb` date NOT NULL,
+  `dateFin` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(30) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+CREATE TABLE `user` (
+  `email` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
+  `type` int(1) NOT NULL COMMENT '0: simple, 1: admin'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `user`
+-- Index pour les tables déchargées
 --
 
-INSERT INTO `user` (`id`, `nom`) VALUES
-(1, 'Cassandre'),
-(2, 'Achille'),
-(3, 'Calypso'),
-(4, 'Bacchus'),
-(5, 'Diane'),
-(6, 'Clark'),
-(7, 'Helene'),
-(8, 'Jason'),
-(9, 'Bruce'),
-(10, 'Pénélope'),
-(11, 'Ariane'),
-(12, 'Lois');
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_categ` (`id_categ`);
+
+--
+-- Index pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `emailUser` (`emailUser`),
+  ADD KEY `idItem` (`idItem`);
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `item`
+--
+ALTER TABLE `item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
@@ -124,6 +172,13 @@ INSERT INTO `user` (`id`, `nom`) VALUES
 --
 ALTER TABLE `item`
   ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`id_categ`) REFERENCES `categorie` (`id`);
+
+--
+-- Contraintes pour la table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`emailUser`) REFERENCES `user` (`email`),
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`idItem`) REFERENCES `item` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
