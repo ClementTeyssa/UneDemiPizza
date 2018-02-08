@@ -21,4 +21,17 @@ class ControleurItem{
 		$vue = new VueItem($item);
 		print $vue->render(VueItem::AFF_ITEM, $item);
 	}
+	
+	public function ajouter_item($nom, $desc, $id_categ){
+		Item i = new Item();
+		$i->description = $desc;
+		$i->nom = $nom;
+		$i->id_categ = $id_categ;
+		$i->save();
+	}
+	
+	public function supprimer_item($id){
+		$item = Item::select()->where('id', '=', $id)->first();
+		$item->delete();
+	}
 }

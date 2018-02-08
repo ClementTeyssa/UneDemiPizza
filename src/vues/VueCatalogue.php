@@ -42,12 +42,14 @@ class VueCatalogue
 
     private function aff_catalogue_v(){
         $cat = $this->objet['2'];
+        $tab = unserialize($_COOKIE['profile']);
         $content =  <<<end
         <div class="row">
         <div class="col s6">
             <h3>Catalogue des véhicules</h3>
                 <br>
                 <p>$cat</p>
+                
                 <br>
                 <table class="highlight">
                     <thead>
@@ -83,6 +85,7 @@ end;
                     </tbody>
                 </table>
         </div class="col s6">
+        
 end;
 
         return $content;
