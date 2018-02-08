@@ -102,15 +102,17 @@ end;
           </nav>
         </header>
         <main>
-            <div class="container"
+            <div class="container">
 end;
         if (isset($_SESSION['message'])) {
             $msg = $_SESSION['message'];
             $content .= <<<end
             <script type="text/javascript">alert($msg);</script>
 end;
-            return $content;
+            $_SESSION = null;
+            
         }
+        return $content;
     }
 
 	public static function getFooter(){
