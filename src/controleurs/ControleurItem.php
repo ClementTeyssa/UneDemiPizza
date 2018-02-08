@@ -26,8 +26,13 @@ class ControleurItem{
 	    $app = \Slim\Slim::getInstance();
 	    $requete = $app->request();
 	    $id = $requete->post('idItem');
-	    if($id == "") echo "prout";
-	    echo "talut";
+	    if($id == "") {
+	        $vue = new VueItem();
+	        print $vue->render(VueItem::AFF_NEW_ITEM);
+	    } else {
+	        $vue = new VueItem($item);
+	        print $vue->render(VueItem::AFF_EDIT_ITEM, $item);
+	    }
 	}
 	
 	public function ajouter_item($nom, $desc, $id_categ){

@@ -8,6 +8,8 @@
 
 namespace pizza\controleurs;
 use pizza\conf\Authentication;
+use pizza\models\Item;
+use pizza\models\reservation;
 use pizza\models\user;
 use pizza\vues\VueNavigation;
 
@@ -32,7 +34,7 @@ class ControleurUser
     	}
     	
     	//recup tous les ids des items reservés
-    	$reserve = Reservation::get();
+    	$reserve = reservation::get();
     	$reserves;
     	foreach ($reserve as $r){
     		array_push($reserves, $r);
