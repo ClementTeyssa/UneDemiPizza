@@ -39,38 +39,47 @@ class VueNavigation
 
     private function index(){
         $app = Slim::getInstance();
-        $catalogue = $app->urlFor('catalogue');
+        $requete = $app->request();
+        $path = $requete->getRootUri();
         $vs = $this->objet[0];
         $as = $this->objet[1];
 
-        $content .= <<<end
+        $content = <<<end
         <div class="row">
             <div class="col s6">
-                <h3></h3>
+                <h3>Les vehicules disponibles</h3>
+                <div class="carousel">
+end;
+        foreach ($vs as $v) {
+            $img = $path . "/images/item/" . $v->id . ".jpg";
+            $content .= <<<end
+            <a class="carousel-item" href="#one!"><img src="$img"></a>
+end;
+        }
+        $content .= <<<end
             </div>
             <div class="col s6">
-                <h3></h3>
+                <h3>Les ateliers disponibles</h3>
+                <div class="carouse2">
+end;
+        foreach ($as as $a){
+            $img = $path . "/images/item/" . $a->id . ".jpg";
+            $content .= <<<end
+            <a class="carousel-item" href="#one!"><img src="$img"></a>
+end;
+        }
+        $content .= <<<end
+                </div>
             </div>
         </div>
 end;
 
-
-
-        /*
-         *
-         *
-         *
-         * <div class="carousel">
-    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-    <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
-  </div>
-         */
-        return <<<end
-        
+        $content .= <<<end
+                 </div>
+            </div>
+        </div>
 end;
+        return $content;
     }
     
     private function inscription(){
