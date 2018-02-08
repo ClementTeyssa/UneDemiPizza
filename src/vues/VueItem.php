@@ -1,6 +1,9 @@
 <?php
 namespace pizza\vues;
 
+use pizza\controleurs\Calendar;
+use Slim\Slim;
+
 class VueItem{
 	
 	const AFF_ITEM = 1;
@@ -27,59 +30,43 @@ class VueItem{
 	
 	
 	public function aff_item_entete(){
-		
-		$nom = $this->objet->nom;
-		$id = $this->objet->id;
-		$desc = $this->objet->description;
-        $mois = date('m');
-        $annee = date('Y');
+        $app =  \Slim\Slim::getInstance();
+        $requete = $app->request();
+        $path = $requete->getRootUri();
+        $item = $this->objet;
+		$nom = $item->nom;
+		$id = $item->id;
+		$desc = $item->description;
+		$img = $item->id;
+		$img = $path.'/images/item/'.$img.".jpg";
 
         $content = <<<end
-		<h1>Item $nom </h1>
+		<h1 class="">Item $nom </h1>
 		<div class="row">
-		    <div class="col s6">
-                <p>Id : $id.</p>
-                <br>
-                <p>$desc</p>
+                <div class="col s6">
+                    <p>$desc</p>
+                 <img class="responsive-img" src="$img">
             </div>
-            <div class="col s1">
-                <i class="material-icons" id="prev">arrow_back</i>
-            </div>
-            <div class="col s4">
+            <div class="col s6">
 end;
-	     $content .=
-             "<script>
-             $(function($){
-	                    var mois = $mois;
-	                    var annee = $annee;
-	                    $(document).ready(function(){
-	                        $(\"#content\").load(\"calendrier.php?mois=\"+mois+\"&annee=\"+annee+\"\");
-	                    });
-	                    $(\"#prev\").click(function(){
-	                        mois--;
-                            if (mois < 1) {
-                                annee--;
-                                mois = 12;
-                            }
-                            $(\"#content\").load(\"calendrier.php?mois=\"+mois+\"&annee=\"+annee+\"\");
-                        });
-	                    $(\"#next\").click(function(){
-                            mois++;
-                            if (mois > 12) {
-                                annee++;
-                                mois = 1;
-                            }
-		                    $(\"#content\").load(\"calendrier.php?mois=\"+mois+\"&annee=\"+annee+\"\"); 
-	                    });
+        $content .= "
+                <script>
+                  $(function() {
+                    $( '#datepicker').datepicker();
+                  });
+                </script>";
+        // TODO: Faire le lien de l'action
+        $content .= <<<end
+                <form id="form_item" method="POST" action="">
+                            <label>Date à reserver</label>
+                            <input type="hidden" name="idItem" value="$id">
+                            <input type="date" name="the_date">
+                            <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add_box</i></button>
+                </form>
+            </div>
+        </div>
+end;
 
-                });";
-	     $content .= "
-	            </script>
-            </div>
-            <div class='col s1'>
-                <i class='material-icons' id='prev'>arrow_forward</i>
-            </div>
-		</div>";
 		return $content;
 	}
 }
