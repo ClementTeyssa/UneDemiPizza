@@ -48,28 +48,30 @@ class VueCatalogue
                 <p>description vehicule</p>
                 <br>
                 <table class="highlight">
-                    <tr>
-                        <th>Nom</th>
-                        <th>Description</th>
-                        <th>Reserver</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Reserver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 end;
+
         $vehicules = $this->objet[0];
-        foreach ($vehicules as $item){
-            $vehicule = Item::getById($item);
-            if($vehicule->id_categ == 1){
+        foreach ($vehicules as $vehicule){
                 $nom = $vehicule->nom;
                 $desc = $vehicule->description;
-                $content = <<<end
+                $content .= <<<end
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
                     <td>BOUTON A FAIRE</td>
                 </tr>
 end;
-            }
         }
         $content .= <<<end
+                    </tbody>
                 </table>
         <div class="s6">
 end;

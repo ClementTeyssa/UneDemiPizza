@@ -24,8 +24,8 @@ class ControleurCatalogue
          * verification si il est connecté
         */
         $tab = array();
-        $vehicules = Item::whereRaw("id_categ = 1")->get();
-        $atelier = Item::select('id')->where('id_categ', '=', 2)->get();
+        $vehicules = Item::where('id_categ', '=', 1)->get();
+        $atelier = Item::where('id_categ', '=', 2)->get();
         array_push($tab, $vehicules);
         array_push($tab, $atelier);
         $vue = new VueCatalogue($tab);
