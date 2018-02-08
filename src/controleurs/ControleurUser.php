@@ -10,7 +10,6 @@ namespace pizza\controleurs;
 use pizza\conf\Authentication;
 use pizza\models\user;
 use pizza\vues\VueNavigation;
-use pizza\models\User as User;
 
 class ControleurUser
 {
