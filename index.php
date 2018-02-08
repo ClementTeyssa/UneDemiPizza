@@ -42,7 +42,7 @@ $app->get('/catalogue/edition(/)', function (){
     (new pizza\controleurs\ControleurItem())->edition();
 })->name("editionItem");
 
-$app->post('/item(/)', function (){
+$app->post('/catalogue/item(/)', function (){
     (new \pizza\controleurs\ControleurItem())->aff_item();
 })->name("item");
 
@@ -71,6 +71,10 @@ $app->get('/deconnexion(/)', function (){
 $app->post('/itemDelete(/)', function (){
     (new \pizza\controleurs\ControleurItem())->supprimer_item();
 })->name("itemDelete");
+
+$app->post('/ajout(/)', function (){
+    (new \pizza\controleurs\ControleurItem())->ajouter_item($_POST['nom'],$_POST['descr'],$_POST['it']);
+})->name("ajoutItem");
 
 
 /*

@@ -200,7 +200,7 @@ end;
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
-                    <td><a href="$add" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add_circle</i></a></td>
+                    <td><form id="form_button" class="formulaire" method="POST" action="$r_item"><button class="btn-floating red"><input id="idItem" name="idItem" type="hidden" value="$idtem"><i class="material-icons">add_circle</i></button></form></td>
                 </tr>
 end;
         }
@@ -225,9 +225,6 @@ end;
             <h3>Catalogue des ateliers</h3>
                 <br>
                 <p>$cat</p>
-                <div align="right">
-                <a href="$add" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-                </div>
                 <table class="highlight">
                     <thead>
                         <tr>
@@ -249,20 +246,7 @@ end;
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
-                    <td>
-                        <div style="position: relative; height: 70px;">
-                 <div class="fixed-action-btn horizontal click-to-toggle" style="position: absolute; right: 2px;">
-                  <a class="btn-floating btn-large red">
-                  <i class="material-icons">settings</i>
-                  </a>
-                    <ul>
-                     <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-                     <li><a class="btn-floating yellow darken-1"><i class="material-icons">settings</i></a></li>
-                     <li><a class="btn-floating red"><i class="material-icons">delete_forever</i></a></li>
-                    </ul>
-                 </div>
-                </div>
-                    </td>
+                    <td><td><form id="form_button" class="formulaire" method="POST" action="$r_item"><button class="btn-floating blue"><input id="idItem" name="idItem" type="hidden" value="$idtem"><i class="material-icons">add_circle</i></button></form></td></td>
                 </tr>
 end;
         }

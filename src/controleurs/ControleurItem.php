@@ -67,11 +67,13 @@ class ControleurItem{
 	}
 	
 	public function ajouter_item($nom, $desc, $id_categ){
+	    $app = \Slim\Slim::getInstance();
 		$i = new Item();
 		$i->description = $desc;
 		$i->nom = $nom;
 		$i->id_categ = $id_categ;
 		$i->save();
+		$app->redirect($app->urlFor("catalogue"));
 	}
 	
 	public function supprimer_item(){

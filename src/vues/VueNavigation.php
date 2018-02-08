@@ -58,23 +58,23 @@ end;
         <form id="form_connexion" class="formulaire" method="POST" action="$r_inscr">
             <div class="row">
                 <div class="col s6">
-                    <label class="black-text">Mail de connexion</label>
+                    <label class="black-text" data-error="incorrect" data-success="bon">Mail de connexion</label>
                     <div class="input-field">                  
                         <input placeholder="exemple@mail.com" type="email" name="mailInscr" required>
                     </div>
                     <br/>
-                    <label class="black-text">Pseudo</label>
+                    <label class="black-text" data-error="incorrect" data-success="bon">Pseudo</label>
                     <div class="input-field">                  
                         <input placeholder="johnny" type="text" name="nomInscr" required>
                     </div>
                 </div>
                 <div class="col s6">
-                    <label class="black-text">Mot de passe</label>
+                    <label class="black-text" data-error="incorrect" data-success="bon">Mot de passe</label>
                      <div class="input-field">
                         <input placeholder="mot de passe"  type="password" name="mdp1Inscr" required>
                      </div>
                      <br/>
-                     <label class="black-text">Répeter mot de passe</label>
+                     <label class="black-text" data-error="incorrect" data-success="bon">Répeter mot de passe</label>
                      <div class="input-field">
                         <input placeholder="mot de passe"  type="password" name="mdp2Inscr" required>
                      </div>
@@ -97,12 +97,12 @@ end;
         <br>
         <form id="form_connexion" class="formulaire" method="post" action="$r_connexion">
             <div class="row">
-                <label class="black-text">Mail de connexion</label>
+                <label class="black-text" data-error="incorrect" data-success="bon">Mail de connexion</label>
                 <div class="input-field">
                     <input placeholder="exemple@mail.com" type="email" name="mailCo" id="connexion_mail" required>
                 </div>
                 <br/>
-                <label class="black-text">Mot de passe</label>
+                <label class="black-text" data-error="incorrect" data-success="bon">Mot de passe</label>
                  <div class="input-field">
                     <input placeholder="mot de passe"  type="password" name="mdpCo" id="connexion_mdp" required>
                  </div>
