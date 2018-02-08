@@ -29,4 +29,9 @@ class ControleurItem{
 		$i->id_categ = $id_categ;
 		$i->save();
 	}
+	
+	public function supprimer_item($id){
+		$item = Item::select()->where('id', '=', $id)->first();
+		$item->delete();
+	}
 }
