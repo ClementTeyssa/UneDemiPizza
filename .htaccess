@@ -1,10 +1,8 @@
 RewriteEngine On
 #
 # RewriteBase indispensable sur webetu :
-# remplacer <login> et <projet> par les valeurs correpsondant à
-# votre cas - par exemple :
-# RewriteBase /www/username0/garage/
-RewriteBase /www/<login>/<projet>/
+
+# RewriteBase /www/username0/mywishlist
 
 
 #
@@ -12,7 +10,6 @@ RewriteBase /www/<login>/<projet>/
 RewriteRule ^sql(/.*|)$ - [NC,F]
 RewriteRule ^src(/.*|)$ - [NC,F]
 RewriteRule ^vendor(/.*|)$ - [NC,F]
-RewriteRule ^scripts(/.*|)$ - [NC,F]
 
 #
 # réécriture pour slim
@@ -20,4 +17,3 @@ RewriteRule ^scripts(/.*|)$ - [NC,F]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
-

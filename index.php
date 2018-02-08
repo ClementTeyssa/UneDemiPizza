@@ -30,6 +30,10 @@ $app->get('/inscription(/)', function (){
     (new pizza\controleurs\ControleurUser())->inscription();
 })->name("inscription");
 
+$app->get('/connexion(/)', function (){
+    (new pizza\controleurs\ControleurUser())->connexion();
+})->name("connexion");
+
 
 
 /*
