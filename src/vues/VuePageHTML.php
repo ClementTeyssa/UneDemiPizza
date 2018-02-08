@@ -20,12 +20,11 @@ class VuePageHTML{
           <title>Une Demi Pizza</title>
           <!--Import des icones googleapis-->
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+          <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/base/jquery-ui.css">
           <!--Import materialize.css-->
           <link type="text/css" rel="stylesheet" href="$path/css/materialize.css"  media="screen,projection"/>
-        
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
           <script type="text/javascript" src="$path/js/materialize.js"></script>
 <script>
 $(document).ready(function(){
@@ -51,7 +50,7 @@ end;
         $acc = $app->urlFor("accueil");
         $tab = unserialize($_COOKIE['profile']);
         $deco = $app->urlFor('deconnexion');
-        return <<<end
+        $content = <<<end
           <nav>
             <div class="nav-wrapper">
               <a href="$acc" class="brand-logo center">Accueil</a>
@@ -65,6 +64,14 @@ end;
         <main>
             <div class="container">
 end;
+        if($_SESSION['message']){
+            $msg = $_SESSION['message'];
+            $content .= <<<end
+            <script>alert($msg)</script>
+end;
+            $_SESSION = null;
+        }
+        return $content;
     }
 
     public static function getHeaderPasCo(){
