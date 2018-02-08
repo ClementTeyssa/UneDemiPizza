@@ -53,27 +53,32 @@ end;
         <br>
         <form id="form_connexion" class="formulaire" method="POST" action="$r_inscr">
             <div class="row">
-                <label class="black-text">Mail de connexion</label>
-                <div class="input-field">                  
-                    <input placeholder="exemple@mail.com" type="email" name="mailInscr" required>
+                <div class="col s6">
+                    <label class="black-text">Mail de connexion</label>
+                    <div class="input-field">                  
+                        <input placeholder="exemple@mail.com" type="email" name="mailInscr" required>
+                    </div>
+                    <br/>
+                    <label class="black-text">Pseudo</label>
+                    <div class="input-field">                  
+                        <input placeholder="johnny" type="text" name="nomInscr" required>
+                    </div>
                 </div>
-                <br/>
-                <label class="black-text">Nom</label>
-                <div class="input-field">                  
-                    <input placeholder="johnny" type="text" name="nomInscr" required>
-                </div>
-                <br/>
-                <label class="black-text">Mot de passe</label>
-                 <div class="input-field">
-                    <input placeholder="mot de passe"  type="password" name="mdp1Inscr" required>
-                 </div>
-                 <br/>
-                 <label class="black-text">Répeter mot de passe</label>
-                 <div class="input-field">
-                    <input placeholder="mot de passe"  type="password" name="mdp2Inscr" required>
+                <div class="col s6">
+                    <label class="black-text">Mot de passe</label>
+                     <div class="input-field">
+                        <input placeholder="mot de passe"  type="password" name="mdp1Inscr" required>
+                     </div>
+                     <br/>
+                     <label class="black-text">Répeter mot de passe</label>
+                     <div class="input-field">
+                        <input placeholder="mot de passe"  type="password" name="mdp2Inscr" required>
+                     </div>
                  </div>
              </div>
-            <button type="submit" name="Se connecter" value="formCo">S'inscrire</button>
+             <div class="row">
+                <button class="btn-floating btn-large waves-effect waves-light red" type="submit" name="Se connecter" value="formCo"><i class="material-icons">add</i></button>
+            </div>
         </form>
 		<br>
 end;

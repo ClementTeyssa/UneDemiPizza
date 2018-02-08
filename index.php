@@ -44,7 +44,7 @@ $app->post('/item(/)', function (){
 })->name("item");
 
 $app->post('/itemR(/)', function (){
-    (new \pizza\controleurs\ControleurItem())->aff_item_res();
+    (new \pizza\controleurs\ControleurItem())->aff_item_resT();
 })->name("itemR");
 
 

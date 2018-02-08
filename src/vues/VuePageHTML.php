@@ -50,14 +50,18 @@ end;
         $acc = $app->urlFor("accueil");
         $tab = unserialize($_COOKIE['profile']);
         $deco = $app->urlFor('deconnexion');
+        $r_cat = $app->urlFor("catalogue");
         $content = <<<end
           <nav>
             <div class="nav-wrapper">
+            <div class="container">
               <a href="$acc" class="brand-logo center">Accueil</a>
-              <ul class="left hide-on-med-and-down">
+              <ul class="right hide-on-med-and-down">
+                <li><a href="$r_cat">Catalogue</a></li>
                 <li><a href="$deco">Deconnexion</a></li>
                 <li>Connecté en tant que $tab[0]</li>
               </ul>
+              </div>
             </div>
           </nav>
         </header>
@@ -67,7 +71,7 @@ end;
         if(isset($_SESSION['message'])){
             $msg = $_SESSION['message'];
             $content .= <<<end
-            <script>alert($msg)</script>
+            <script type="text/javascript">alert($msg);</script>
 end;
             $_SESSION = null;
         }
@@ -82,11 +86,13 @@ end;
         return <<<end
           <nav>
             <div class="nav-wrapper">
+            <div class="container">
               <a href="$acc" class="brand-logo center">Accueil</a>
-              <ul class="left hide-on-med-and-down">
+              <ul class="right hide-on-med-and-down">
                 <li><a href="$co">Connexion</a></li>
                 <li><a href="$inscr">inscription</a></li>
               </ul>
+              </div>
             </div>
           </nav>
         </header>

@@ -3,8 +3,31 @@ namespace pizza\controleurs;
 
 use pizza\models\Item;
 use pizza\vues\VueItem;
+use pizza\models\Reservation;
+use Slim\Slim;
 
 class ControleurItem{
+
+    /*
+     * ==============================================================
+     *                          Traitement
+     * ==============================================================
+     */
+    public function aff_item_resT(){
+        $app = \Slim\Slim::getInstance();
+        $requete = $app->request();
+        $itemid =  $requete->post('idItem');
+        $item = Item::getById($itemid);
+        $date = $requete->post('the_date');
+        $date = date( "Y-m-d", strtotime($date) );
+        $nbD = Reservation::where('dateDeb')->count()+Reservation::where('dateFin')->count();
+        if($nbD != 0 ){
+            $_SESSION['message'] = "Il y a déjà une réservation à cette date";
+            $app->redirect("catalogue");
+        } else {
+            $this->aff_res_item($item);
+        }
+    }
 	
 	/*
 	 * ==============================================================
@@ -35,12 +58,10 @@ class ControleurItem{
 		$item->delete();
 	}
 
-	public function aff_item_res(){
-        $app = \Slim\Slim::getInstance();
-        $requete = $app->request();
-        $itemid =  $requete->post('idItem');
-        $item = Item::getById($itemid);
-        $date = $requete->post('the_date');
-        echo $date;
+
+	public function aff_res_item($item){
+        $vue = new VueItem();
+        print $vue->render(VueItem::AFF_RES);
     }
+
 }
