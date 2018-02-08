@@ -98,7 +98,7 @@ end;
              <div class="col s3">REMOIVILLE Guerric</div>
              <div class="col s3">HUBERT Baptiste</div>
         </div>
-        <a class="grey-text text-lighten-4 right" href="#!">Cancer CharlyDay 2018</a>
+        <a href="http://factuel.univ-lorraine.fr/node/5865" class="grey-text text-lighten-4 right" href="#!">Cancer CharlyDay 2018</a>
         <br><br>
       </div>
   </footer>
