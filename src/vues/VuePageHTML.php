@@ -5,9 +5,7 @@ namespace pizza\vues;
 class VuePageHTML{
 
 	public static function getHeaders(){
-	    /*
-	     * faire ici les vérifications pour les connexion et les différents headers
-	     */
+	     // TODO: faire ici les vérifications pour les connexion et les différents headers
         return VuePageHTML::getHeaderDeb().VuePageHTML::getHeaderFin();
     }
 
@@ -39,13 +37,13 @@ end;
     public static function getHeaderFin(){
         $app =  \Slim\Slim::getInstance();
         $inscr = $app->urlFor("inscription");
+        $acc = $app->urlFor("accueil");
         $co = $app->urlFor("connexion");
         return <<<end
           <nav>
             <div class="nav-wrapper">
-              <a href="$inscr" class="brand-logo center">Accueil</a>
+              <a href="$acc" class="brand-logo center">Accueil</a>
               <ul class="left hide-on-med-and-down">
-                <li><a href="$co">Connexion Administrateur</a></li>
                 <li><a href="$co">Connexion</a></li>
                 <li><a href="$inscr">inscription</a></li>
               </ul>

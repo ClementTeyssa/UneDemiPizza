@@ -29,6 +29,7 @@ class VueNavigation
         return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
     }
 
+    // TODO: faire les verifs en fonctions de si il est co
     private function index(){
         $app = Slim::getInstance();
         $catalogue = $app->urlFor('catalogue');
