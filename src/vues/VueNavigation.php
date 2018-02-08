@@ -40,10 +40,36 @@ class VueNavigation
     private function index(){
         $app = Slim::getInstance();
         $catalogue = $app->urlFor('catalogue');
+        $vs = $this->objet[0];
+        $as = $this->objet[1];
+
+        $content .= <<<end
+        <div class="row">
+            <div class="col s6">
+                <h3></h3>
+            </div>
+            <div class="col s6">
+                <h3></h3>
+            </div>
+        </div>
+end;
+
+
+
+        /*
+         *
+         *
+         *
+         * <div class="carousel">
+    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
+    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
+    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
+    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
+    <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+  </div>
+         */
         return <<<end
-        <h1>Accueil</h1>
-        <br>
-        <a href="$catalogue">Accéder au catalogue</a>
+        
 end;
     }
     
