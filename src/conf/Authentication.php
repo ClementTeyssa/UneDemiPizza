@@ -44,10 +44,9 @@ class Authentication{
 
 	public static function deconnexion(){
 		$app =  \Slim\Slim::getInstance();
-        if (isset($_COOKIE['enseignant'])) {
-            unset($_COOKIE['enseignant']);
-            setcookie('enseignant', '', time() - 60*60*24, '/'); // valeur vide et temps dans le passé
-            $_SESSION['message'] = "Vous avez bien été déconnecté";
+        if (isset($_COOKIE['profile'])) {
+            unset($_COOKIE['profile']);
+            setcookie('profile', '', time() - 60*60*24, '/'); // valeur vide et temps dans le passés
         }
         $app->redirect($app->urlFor("accueil"));
 	}

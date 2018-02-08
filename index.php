@@ -53,6 +53,10 @@ $app->post('/connexion(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexionT();
 })->name("connexionT");
 
+$app->post('/deconnexion(/)', function (){
+    (new pizza\conf\Authentication())->deconnexion();
+})->name("deconnexion");
+
 
 /*
  * Lancement de Slim
