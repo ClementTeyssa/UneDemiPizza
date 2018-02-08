@@ -81,12 +81,14 @@ end;
         
     private function connexion(){
         $app = \Slim\Slim::getInstance();
-        $r_connexion = $app->urlFor("connexion");
+        $r_connexion = $app->urlFor("connexionT");
+        $r = $app->request->getRootUri();
+        $r_final = $r . $r_connexion;
         return  <<<end
         <h1>Page de connexion</h1>
         <br>
         <br>
-        <form id="form_connexion" class="formulaire" method="POST" action="$r_connexion">
+        <form id="form_connexion" class="formulaire" method="post" action="$r_final">
             <div class="row">
                 <label class="black-text">Mail de connexion</label>
                 <div class="input-field">
