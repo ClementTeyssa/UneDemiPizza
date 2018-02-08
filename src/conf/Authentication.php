@@ -40,7 +40,6 @@ class Authentication{
         array_push($tab, $role);
         $ccokie = serialize($tab);
         setcookie('profile', $ccokie, time()+60*60*24*30, "/");
-        $app->redirect($app->urlFor("accueil"));
 	}
 
 	public static function deconnexion(){

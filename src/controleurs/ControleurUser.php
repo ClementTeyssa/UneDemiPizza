@@ -9,6 +9,7 @@
 namespace pizza\controleurs;
 use pizza\conf\Authentication;
 use pizza\vues\VueNavigation;
+use pizza\models\User as User;
 
 class ControleurUser
 {
@@ -54,7 +55,7 @@ class ControleurUser
         
         $emailVerif = User::where('email','=', $email)->first();
         
-        if(isset($emailVerif)){
+        if($emailVerif == null){
         	$nom = filter_var($requete->post('nomInscr'), FILTER_SANITIZE_EMAIL);
         	$mdp1 = $requete->post('mdp1Inscr');
         	$mdp2 = $requete->post('mdp2Inscr');
@@ -74,6 +75,7 @@ class ControleurUser
         $email = filter_var($requete->post('mailCo'), FILTER_SANITIZE_EMAIL);
         $mdp = $requete->post('mdpCo');
         Authentication::authenticate($email, $mdp);
-        $app->redirect($app->urlFor("accueil"));
+        \Slim\Slim::getInstance()->redirect(\Slim\Slim::getInstance()->urlFor("catalogue"));        
+        //$app->redirect($app->urlFor("catalogue"));
     }
 }
