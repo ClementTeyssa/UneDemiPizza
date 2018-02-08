@@ -35,6 +35,8 @@ class VueCatalogue
         return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
     }
 
+    // TODO: verifier en fonction de admin ou normal
+    // TODO: faire les boutons
     public function aff_catalogue(){
         return "<h1>Catalogue</h1><br><br>".$this->aff_catalogue_v().$this->aff_catalogue_a();
     }
