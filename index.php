@@ -53,7 +53,7 @@ $app->post('/connexion(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexionT();
 })->name("connexionT");
 
-$app->post('/deconnexion(/)', function (){
+$app->get('/deconnexion(/)', function (){
     (new pizza\conf\Authentication())->deconnexion();
 })->name("deconnexion");
 
