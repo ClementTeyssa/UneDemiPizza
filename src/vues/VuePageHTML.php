@@ -67,7 +67,7 @@ end;
              <div class="col s3">TEYSSANDIER Clément</div>
         </div>
         <div class="row">
-             <div class="col s3">OBERHAUSSER Lucas</div>
+             <div class="col s3">OBERHAUSSER Ober</div>
              <div class="col s3">REMOIVILLE Guerric</div>
              <div class="col s3">HUBERT Baptiste</div>
         </div>
