@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 08 fév. 2018 à 15:56
+-- Généré le :  jeu. 08 fév. 2018 à 16:01
 -- Version du serveur :  10.1.26-MariaDB
 -- Version de PHP :  7.1.9
 
@@ -115,7 +115,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`email`, `nom`, `mdp`, `type`) VALUES
-('ui@ui.fr', 'uiuiui', '$2y$12$SDlem.ERo6VvpQGUYG8AX.reFPaY750RWVOcUlxVd31celH.MhWm.', 0);
+('admin@admin.fr', 'admin', '$2y$12$2CgfsDdustAK95.O8cdiYuRld539GDCajsBzZpH/C9ILfPdPwSFEe', 1),
+('client@client.fr', 'client', '$2y$12$b1X1/rWQzkp3LEdfDKqSYuMtEuL3k7LiSKEclhzkmjgk9QDrwdTEy', 0);
 
 --
 -- Index pour les tables déchargées
