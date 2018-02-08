@@ -8,6 +8,7 @@ class VueNavigation
 {
     const AFF_INDEX = 1;
     const AFF_INSCRIPTION = 2;
+    const AFF_CONNEXION = 3;
 
     private $objet;
 
@@ -25,6 +26,9 @@ class VueNavigation
             case VueNavigation::AFF_INSCRIPTION:
                 $content = $this->inscription();
                 break;
+            case VueNavigation::AFF_CONNEXION:
+                $content = $this->connexion();
+                break;
         }
         return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
     }
@@ -40,6 +44,66 @@ end;
     }
     
     private function inscription(){
-        return "<h1>Inscription oui</h1>";
+        $app = \Slim\Slim::getInstance();
+        $r_inscr = $app->urlFor("inscriptionT");
+        $r_accueil = $app->urlFor("accueil");
+        return  <<<end
+        <h1>Page d'inscription</h1>
+        <br>
+        <br>
+        <form id="form_connexion" class="formulaire" method="POST" action="$r_inscr">
+            <div class="row">
+                <label class="black-text">Mail de connexion</label>
+                <div class="input-field">                  
+                    <input placeholder="exemple@mail.com" type="email" name="mailInscr" required>
+                </div>
+                <br/>
+                <label class="black-text">Nom</label>
+                <div class="input-field">                  
+                    <input placeholder="johnny" type="text" name="nomInscr" required>
+                </div>
+                <br/>
+                <label class="black-text">Mot de passe</label>
+                 <div class="input-field">
+                    <input placeholder="mot de passe"  type="password" name="mdpInscr1" required>
+                 </div>
+                 <br/>
+                 <label class="black-text">Répeter mot de passe</label>
+                 <div class="input-field">
+                    <input placeholder="mot de passe"  type="password" name="mdpInscr2" required>
+                 </div>
+             </div>
+            <button type="submit" name="Se connecter" value="formCo">Se connecter</button>
+        </form>
+		<br>
+end;
+    }
+        
+    private function connexion(){
+        $app = \Slim\Slim::getInstance();
+        $r_connexion = $app->urlFor("connexion");
+        $r_accueil = $app->urlFor("accueil");
+        return  <<<end
+        <h1>Page de connexion</h1>
+        <br>
+        <br>
+        <form id="form_connexion" class="formulaire" method="POST" action="$r_connexion">
+            <div class="row">
+                <label class="black-text">Mail de connexion</label>
+                <div class="input-field">
+                    <input placeholder="exemple@mail.com" type="email" name="mailCo" id="connexion_mail" required>
+                </div>
+                <br/>
+                <label class="black-text">Mot de passe</label>
+                 <div class="input-field">
+                    <input placeholder="mot de passe"  type="password" name="mdpCo" id="connexion_mdp" required>
+                 </div>
+             </div>
+            <br/><br/>
+            <button type="submit" name="Se connecter" value="formCo">Se connecter</button>
+        </form>
+		<br>
+		<a href='$r_accueil' id="accueil" >Accueil</a>
+end;
     }
 }

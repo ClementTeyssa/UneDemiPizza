@@ -1,24 +1,21 @@
 <?php
 namespace pizza\conf;
-use amphux\models\Enseignant;
-use amphux\models\Eleve;
+use pizza\models\user;
 
 class Authentication{
 
-	public static function createUser( $surName, $firstName, $mail, $password){
+	public static function createUser( $name, $mail, $password){
 		$password = password_hash($password, PASSWORD_DEFAULT, Array('cost' => 12));
-		$u = new Enseignant();
+		$u = new user();
 		$u->email = $mail;
-		$u->nom = $surName;
-		$u->prenom = $firstName;
+		$u->nom = $name;
 		$u->mdp = $password;
 		$u->save();
-        $_SESSION['message'] = "Vous vous êtes bien inscrit";
 	}
 
 	public static function authenticateEns($mail, $password){
 		$app =  \Slim\Slim::getInstance();
-		$user = Enseignant::getByEmail($mail);
+		$user = User::getByEmail($mail);
 		if($user != null) {
 			if (password_verify($password,$user->mdp)) {
 				self::loadProfileEns($mail);
