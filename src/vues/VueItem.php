@@ -15,7 +15,7 @@ class VueItem{
 		$this->objet = $obj;
 	}
 
-	public function render($selecteur, $obj)
+	public function render($selecteur, $obj = null)
 	{
 		$content=null;
 		if(isset($obj)){
@@ -63,8 +63,9 @@ end;
                   });
                 </script>";
         // TODO: Faire le lien de l'action
+        $r_item = $app->urlFor("itemR");
         $content .= <<<end
-                <form id="form_item" method="POST" action="">
+                <form id="form_item" method="POST" action="$r_item">
                             <label>Date à reserver</label>
                             <input type="hidden" name="idItem" value="$id">
                             <input type="date" name="the_date">

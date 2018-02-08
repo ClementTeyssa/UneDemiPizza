@@ -47,7 +47,7 @@ $app->post('/item(/)', function (){
 })->name("item");
 
 $app->post('/itemR(/)', function (){
-    (new \pizza\controleurs\ControleurItem())->aff_item_res();
+    (new \pizza\controleurs\ControleurItem())->aff_item_resT();
 })->name("itemR");
 
 
@@ -71,8 +71,6 @@ $app->get('/deconnexion(/)', function (){
 $app->post('/itemDelete(/)', function (){
     (new \pizza\controleurs\ControleurItem())->supprimer_item();
 })->name("itemDelete");
-
-
 
 
 /*

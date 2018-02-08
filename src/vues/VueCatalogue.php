@@ -111,13 +111,14 @@ end;
         $cat = $this->objet['3'];
         $app = \Slim\Slim::getInstance();
         $add = $app->urlFor("editionItem");
+        $delete = $app->urlFor("itemDelete");
         $content = <<<end
         <div class="col s6">
             <h3>Catalogue des ateliers</h3>
                 <br>
                 <p>$cat</p>
                 <div align="right">
-                <a href="$add" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a href="$add" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
                 </div>
                 <table class="highlight">
                     <thead>
@@ -144,7 +145,7 @@ end;
                         <div style="position: relative; height: 70px;">
                  <div style="position: relative; height: 70px;">
                  <div class="fixed-action-btn horizontal click-to-toggle" style="position: absolute; right: 2px;">
-                  <a class="btn-floating btn-large red">
+                  <a class="btn-floating btn-large blue">
                   <i class="material-icons">settings</i>
                   </a>
                     <ul>

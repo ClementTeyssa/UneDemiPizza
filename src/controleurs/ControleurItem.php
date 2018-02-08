@@ -3,8 +3,39 @@ namespace pizza\controleurs;
 
 use pizza\models\Item;
 use pizza\vues\VueItem;
+use pizza\models\Reservation;
+use Slim\Slim;
 
 class ControleurItem{
+
+    /*
+     * ==============================================================
+     *                          Traitement
+     * ==============================================================
+     */
+    public function aff_item_resT(){
+        $app = \Slim\Slim::getInstance();
+        $requete = $app->request();
+        $itemid =  $requete->post('idItem');
+        $item = Item::getById($itemid);
+        $date = $requete->post('the_date');
+        $date = date( "Y-m-d", strtotime($date) );
+        $nbD = Reservation::where('dateDeb')->count()+Reservation::where('dateFin')->count();
+        if($nbD != 0 ){
+            $_SESSION['message'] = "Il y a déjà une réservation à cette date";
+            $app->redirect("catalogue");
+        } else {
+            $res = new Reservation();
+            $res->idItem = $itemid;
+            $res->dateDeb = $date;
+            $res->dateFin = $date;
+            $tab = unserialize($_COOKIE['profile']);
+            $email = $tab[0];
+            $res->emailUser = $email;
+            $res->save();
+            $app->redirect("catalogue");
+        }
+    }
 	
 	/*
 	 * ==============================================================
@@ -52,12 +83,5 @@ class ControleurItem{
 		$app->redirect($app->urlFor('catalogue'));
 	}
 
-	public function aff_item_res(){
-        $app = \Slim\Slim::getInstance();
-        $requete = $app->request();
-        $itemid =  $requete->post('idItem');
-        $item = Item::getById($itemid);
-        $date = $requete->post('the_date');
-        echo $date;
-    }
+
 }
