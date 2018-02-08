@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 08 fév. 2018 à 11:00
+-- Généré le :  jeu. 08 fév. 2018 à 16:01
 -- Version du serveur :  10.1.26-MariaDB
 -- Version de PHP :  7.1.9
 
@@ -109,6 +109,14 @@ CREATE TABLE `user` (
   `mdp` varchar(255) NOT NULL,
   `type` int(1) NOT NULL COMMENT '0: simple, 1: admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`email`, `nom`, `mdp`, `type`) VALUES
+('admin@admin.fr', 'admin', '$2y$12$2CgfsDdustAK95.O8cdiYuRld539GDCajsBzZpH/C9ILfPdPwSFEe', 1),
+('client@client.fr', 'client', '$2y$12$b1X1/rWQzkp3LEdfDKqSYuMtEuL3k7LiSKEclhzkmjgk9QDrwdTEy', 0);
 
 --
 -- Index pour les tables déchargées
