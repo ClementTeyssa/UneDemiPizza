@@ -8,6 +8,7 @@
 
 namespace pizza\controleurs;
 use pizza\conf\Authentication;
+use pizza\models\user;
 use pizza\vues\VueNavigation;
 
 class ControleurUser
