@@ -57,7 +57,7 @@ $app->post('/inscription(/)', function (){
     (new pizza\controleurs\ControleurUser())->inscriptionT();
 })->name("inscriptionT");
 
-$app->post('/connexionT', function (){
+$app->post('/connexionT(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexionT();
 })->name("connexionT");
 
