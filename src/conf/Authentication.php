@@ -1,6 +1,6 @@
 <?php
 namespace pizza\conf;
-use pizza\models\user;
+use pizza\models\User;
 
 class Authentication{
 
@@ -30,10 +30,16 @@ class Authentication{
 
 	public static function loadProfile( $mail ){
 		$app =  \Slim\Slim::getInstance();
-		setcookie('profile', $mail, time()+60*60*24*30, "/");
         unset($_COOKIE['profile']);
         setcookie('profile', '', time() - 60*60*24, '/');
-		$app->redirect($app->urlFor("accueil"));
+        $user = User::getByEmail($mail);
+        $role = $user->type;
+        $tab = array();
+        array_push($tab, $mail);
+        array_push($tab, $role);
+        $ccokie = serialize($tab);
+        setcookie('profile', $ccokie, time()+60*60*24*30, "/");
+        $app->redirect($app->urlFor("accueil"));
 	}
 
 	public static function deconnexion(){
@@ -44,20 +50,5 @@ class Authentication{
             $_SESSION['message'] = "Vous avez bien été déconnecté";
         }
         $app->redirect($app->urlFor("accueil"));
-	}
-
-	
-	public static function updateUser( $u, $surName, $firstName, $mail, $password ){
-		$password = password_hash($password, PASSWORD_DEFAULT, Array('cost' => 12));
-		$u->email = $mail;
-		$u->nom = $surName;
-		$u->prenom = $firstName;
-		if(!empty($password)) $u->mdp = $password;
-		$u->save();
-		if (isset($_COOKIE['enseignant'])) {
-			unset($_COOKIE['enseignant']);
-			setcookie('enseignant', '', time() - 60*60*24, '/');
-			setcookie("enseignant", $u->email, time()+60*60*24*30,"/");
-		}
 	}
 }

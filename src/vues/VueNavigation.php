@@ -74,7 +74,7 @@ end;
                     <input placeholder="mot de passe"  type="password" name="mdp2Inscr" required>
                  </div>
              </div>
-            <button type="submit" name="Se connecter" value="formCo">Se connecter</button>
+            <button type="submit" name="Se connecter" value="formCo">S'inscrire</button>
         </form>
 		<br>
 end;
@@ -103,8 +103,6 @@ end;
             <br/><br/>
             <button type="submit" name="Se connecter" value="formCo">Se connecter</button>
         </form>
-		<br>
-		<a href='$r_accueil' id="accueil" >Accueil</a>
 end;
     }
 }
