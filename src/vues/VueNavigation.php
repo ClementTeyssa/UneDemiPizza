@@ -39,17 +39,47 @@ class VueNavigation
 
     private function index(){
         $app = Slim::getInstance();
-        $catalogue = $app->urlFor('catalogue');
-        return <<<end
-        <div class = "row center-align">
-			<div class = "col s6">
+        $requete = $app->request();
+        $path = $requete->getRootUri();
+        $vs = $this->objet[0];
+        $as = $this->objet[1];
 
-			</div>
-			<div class = "col s6">
-
-			</div>
-		</div>
+        $content = <<<end
+        <div class="row">
+            <div class="col s6">
+                <h3>Les vehicules disponibles</h3>
+                <div class="carousel">
 end;
+        foreach ($vs as $v) {
+            $img = $path . "/images/item/" . $v->id . ".jpg";
+            $content .= <<<end
+            <a class="carousel-item" href="#one!"><img src="$img"></a>
+end;
+        }
+        $content .= <<<end
+            </div>
+            <div class="col s6">
+                <h3>Les ateliers disponibles</h3>
+                <div class="carouse2">
+end;
+        foreach ($as as $a){
+            $img = $path . "/images/item/" . $a->id . ".jpg";
+            $content .= <<<end
+            <a class="carousel-item" href="#one!"><img src="$img"></a>
+end;
+        }
+        $content .= <<<end
+                </div>
+            </div>
+        </div>
+end;
+
+        $content .= <<<end
+                 </div>
+            </div>
+        </div>
+end;
+        return $content;
     }
     
     private function inscription(){

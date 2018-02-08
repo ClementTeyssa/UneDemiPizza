@@ -9,6 +9,7 @@
 namespace pizza\controleurs;
 use pizza\conf\Authentication;
 use pizza\models\Item;
+use pizza\models\reservation;
 use pizza\models\user;
 use pizza\vues\VueNavigation;
 
@@ -30,7 +31,6 @@ class ControleurUser
         $tab = array();
         array_push($tab, $itemsV);
         array_push($tab, $itemsA);
-
         $vue = new VueNavigation();
         print $vue->render(VueNavigation::AFF_INDEX, $tab);
     }
