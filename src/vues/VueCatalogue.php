@@ -36,16 +36,17 @@ class VueCatalogue
     }
 
     public function aff_catalogue(){
-        return "<h1>Catalogue</h1><br><br>".$this->aff_catalogue_v();
+        return "<h1 class=\"center-align\">Catalogue</h1><br><br>".$this->aff_catalogue_v().$this->aff_catalogue_a();
     }
 
     private function aff_catalogue_v(){
+        $cat = $this->objet['2'];
         $content =  <<<end
         <div class="row">
             <div class="s6">
                 <h2>Catalogue des véhicules</h2>
                 <br>
-                <p>description vehicule</p>
+                <p>$cat</p>
                 <br>
                 <table class="highlight">
                     <tr>
@@ -76,4 +77,45 @@ end;
 
         return $content;
     }
+<<<<<<< HEAD
+=======
+
+    private function aff_catalogue_a(){
+        $cat = $this->objet['3'];
+        $content = <<<end
+        <div class="col s6">
+            <h3>Catalogue des ateliers</h3>
+                <br>
+                <p>$cat</p>
+                <br>
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Reserver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+end;
+        $ateliers = $this->objet[1];
+        foreach ($ateliers as $atelier) {
+            $nom = $atelier->nom;
+            $desc = $atelier->description;
+            $content .= <<<end
+                <tr>
+                    <td>$nom</td>
+                    <td>$desc</td>
+                    <td>BOUTON A FAIRE</td>
+                </tr>
+end;
+        }
+        $content .= <<<end
+                    </tbody>
+                </table>
+        </div class="col s6">
+end;
+        return $content;
+    }
+>>>>>>> c3e6a45c34e6bb099ea05a505c9e8f0472779564
 }

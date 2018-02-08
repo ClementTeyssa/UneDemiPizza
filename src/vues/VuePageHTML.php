@@ -5,9 +5,7 @@ namespace pizza\vues;
 class VuePageHTML{
 
 	public static function getHeaders(){
-	    /*
-	     * faire ici les vérifications pour les connexion et les différents headers
-	     */
+	     // TODO: faire ici les vérifications pour les connexion et les différents headers
         return VuePageHTML::getHeaderDeb().VuePageHTML::getHeaderFin();
     }
 
@@ -35,17 +33,43 @@ class VuePageHTML{
 end;
 
     }
-
+	    
     public static function getHeaderFin(){
+        if(isset($_COOKIE['profile'])) return VuePageHTML::getHeaderCo();
+        else return VuePageHTML::getHeaderPasCo();
+    }
+    
+    public static function getHeaderCo(){
+        $app =  \Slim\Slim::getInstance();
+        $deco = $app->urlFor("accueil");
+        $acc = $app->urlFor("accueil");
+        $tab = unserialize($_COOKIE['profile']);
+        return <<<end
+          <nav>
+            <div class="nav-wrapper">
+              <a href="$acc" class="brand-logo center">Accueil</a>
+              <ul class="left hide-on-med-and-down">
+                <li><a href="$deco">Deconnexion</a></li>
+                <li>Connecté en tant que $tab[0]</li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <main>
+            <div class="container">
+end;
+    }
+
+    public static function getHeaderPasCo(){
         $app =  \Slim\Slim::getInstance();
         $inscr = $app->urlFor("inscription");
+        $acc = $app->urlFor("accueil");
         $co = $app->urlFor("connexion");
         return <<<end
           <nav>
             <div class="nav-wrapper">
-              <a href="$inscr" class="brand-logo center">Accueil</a>
+              <a href="$acc" class="brand-logo center">Accueil</a>
               <ul class="left hide-on-med-and-down">
-                <li><a href="$co">Connexion Administrateur</a></li>
                 <li><a href="$co">Connexion</a></li>
                 <li><a href="$inscr">inscription</a></li>
               </ul>

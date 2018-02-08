@@ -1,44 +1,45 @@
 <?php
 namespace pizza\conf;
-use amphux\models\Enseignant;
-use amphux\models\Eleve;
+use pizza\models\User;
 
 class Authentication{
 
-	public static function createUser( $surName, $firstName, $mail, $password){
+	public static function createUser($name, $mail, $password){
 		$password = password_hash($password, PASSWORD_DEFAULT, Array('cost' => 12));
-		$u = new Enseignant();
+		$u = new user();
 		$u->email = $mail;
-		$u->nom = $surName;
-		$u->prenom = $firstName;
+		$u->nom = $name;
 		$u->mdp = $password;
 		$u->save();
-        $_SESSION['message'] = "Vous vous êtes bien inscrit";
+		Authentication::authenticate($mail,$password);
 	}
 
-	public static function authenticateEns($mail, $password){
+	public static function authenticate($mail, $password){
 		$app =  \Slim\Slim::getInstance();
-		$user = Enseignant::getByEmail($mail);
+		$user = User::getByEmail($mail);
 		if($user != null) {
-			if (password_verify($password,$user->mdp)) {
-				self::loadProfileEns($mail);
+			if(password_verify($password,$user->mdp)) {
+				self::loadProfile($mail);
 			} else {
-				$_SESSION['message'] = "Le mot de passe est incorrect";
-				$app->redirect($app->urlFor("connexionEns"));
+				$app->redirect($app->urlFor("connexion"));
 			}
 		}else{
-			$_SESSION['message'] = "L'utilisateur est introuvable";
-			$app->redirect($app->urlFor("connexionEns"));
+			$app->redirect($app->urlFor("connexion"));
 		}
 	}
 
-	public static function loadProfileEns( $mail ){
+	public static function loadProfile( $mail ){
 		$app =  \Slim\Slim::getInstance();
-		setcookie('enseignant', $mail, time()+60*60*24*30, "/");
-        unset($_COOKIE['etudiant']);
-        setcookie('etudiant', '', time() - 60*60*24, '/');
-        $_SESSION['message'] = "Vous vous êtes bien connecté";
-		$app->redirect($app->urlFor("accueil"));
+        unset($_COOKIE['profile']);
+        setcookie('profile', '', time() - 60*60*24, '/');
+        $user = User::getByEmail($mail);
+        $role = $user->type;
+        $tab = array();
+        array_push($tab, $mail);
+        array_push($tab, $role);
+        $ccokie = serialize($tab);
+        setcookie('profile', $ccokie, time()+60*60*24*30, "/");
+        $app->redirect($app->urlFor("accueil"));
 	}
 
 	public static function deconnexion(){
@@ -49,34 +50,5 @@ class Authentication{
             $_SESSION['message'] = "Vous avez bien été déconnecté";
         }
         $app->redirect($app->urlFor("accueil"));
-	}
-
-	
-	public static function updateUser( $u, $surName, $firstName, $mail, $password ){
-		$password = password_hash($password, PASSWORD_DEFAULT, Array('cost' => 12));
-		$u->email = $mail;
-		$u->nom = $surName;
-		$u->prenom = $firstName;
-		if(!empty($password)) $u->mdp = $password;
-		$u->save();
-		if (isset($_COOKIE['enseignant'])) {
-			unset($_COOKIE['enseignant']);
-			setcookie('enseignant', '', time() - 60*60*24, '/');
-			setcookie("enseignant", $u->email, time()+60*60*24*30,"/");
-		}
-	}
-	
-	public static function authenticateEtu($pseudo, $salon){
-		$app =  \Slim\Slim::getInstance();
-		$eleve = new Eleve();
-		$eleve->idSalon = $salon->idSalon;
-		$eleve->nom = $pseudo;
-		$eleve->save();
-		$tab = array($eleve->idEleve, $salon->token);
-		$tab = serialize($tab);
-		setcookie('etudiant', $tab, time()+60*60*2, '/');
-        unset($_COOKIE['enseignant']);
-        setcookie('enseignant', '', time() - 60*60*24, '/');
-		$app->redirect($app->urlFor('affsalon_etu'));
 	}
 }
