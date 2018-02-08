@@ -21,7 +21,7 @@ class VueNavigation
 
     public function render($selecteur, $tab = null)
     {
-        return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
+        return VuePageHTML::getHeaders()."<h1>Index</h1>".VuePageHTML::getFooter();
     }
 
     private function index(){

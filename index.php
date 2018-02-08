@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Clément Teyssandier
- * Date: 14/11/2017
- * Time: 16:54
- */
 session_start();
 require_once "vendor/autoload.php";
 
@@ -12,7 +6,7 @@ require_once "vendor/autoload.php";
 /*
  * connexion a la base de données
  */
-amphux\conf\ConnexionBase::initialisation('src/conf/conf.ini');
+pizza\conf\ConnexionBase::initialisation('src/conf/conf.ini');
 
 /*
  * initialisation de Slim
