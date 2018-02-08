@@ -74,6 +74,6 @@ class ControleurUser
         $email = filter_var($requete->post('mailCo'), FILTER_SANITIZE_EMAIL);
         $mdp = $requete->post('mdpCo');
         Authentication::authenticate($email, $mdp);
-        //$app->redirect($app->urlFor("accueil"));
+        $app->redirect($app->urlFor("accueil"));
     }
 }
