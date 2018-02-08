@@ -35,45 +35,86 @@ class VueCatalogue
         return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
     }
 
+    // TODO: verifier en fonction de admin ou normal
+    // TODO: faire les boutons
     public function aff_catalogue(){
-        return "<h1>Catalogue</h1><br><br>".$this->aff_catalogue_v();
+        return "<h1>Catalogue</h1><br><br>".$this->aff_catalogue_v().$this->aff_catalogue_a();
     }
 
     private function aff_catalogue_v(){
         $content =  <<<end
         <div class="row">
-            <div class="s6">
-                <h2>Catalogue des véhicules</h2>
+            <div class="col s6">
+                <h3>Catalogue des véhicules</h3>
                 <br>
                 <p>description vehicule</p>
                 <br>
                 <table class="highlight">
-                    <tr>
-                        <th>Nom</th>
-                        <th>Description</th>
-                        <th>Reserver</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Reserver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 end;
+
         $vehicules = $this->objet[0];
-        foreach ($vehicules as $item){
-            $vehicule = Item::getById($item);
-            if($vehicule->id_categ == 1){
+        foreach ($vehicules as $vehicule){
                 $nom = $vehicule->nom;
                 $desc = $vehicule->description;
-                $content = <<<end
+                $content .= <<<end
                 <tr>
                     <td>$nom</td>
                     <td>$desc</td>
                     <td>BOUTON A FAIRE</td>
                 </tr>
 end;
-            }
         }
         $content .= <<<end
+                    </tbody>
                 </table>
-        <div class="s6">
+        </div class="col s6">
 end;
 
+        return $content;
+    }
+
+    private function aff_catalogue_a(){
+        $content = <<<end
+        <div class="col s6">
+            <h3>Catalogue des ateliers</h3>
+                <br>
+                <p>description atelier</p>
+                <br>
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Reserver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+end;
+        $ateliers = $this->objet[1];
+        foreach ($ateliers as $atelier) {
+            $nom = $atelier->nom;
+            $desc = $atelier->description;
+            $content .= <<<end
+                <tr>
+                    <td>$nom</td>
+                    <td>$desc</td>
+                    <td>BOUTON A FAIRE</td>
+                </tr>
+end;
+        }
+        $content .= <<<end
+                    </tbody>
+                </table>
+        </div class="col s6">
+end;
         return $content;
     }
 }

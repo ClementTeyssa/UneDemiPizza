@@ -20,12 +20,10 @@ class ControleurCatalogue
      * ==============================================================
      */
     public function aff_catalogue(){
-        /*
-         * verification si il est connecté
-        */
+        // TODO: vérifier si la personne est connectée
         $tab = array();
-        $vehicules = Item::whereRaw("id_categ = 1")->get();
-        $atelier = Item::select('id')->where('id_categ', '=', 2)->get();
+        $vehicules = Item::where('id_categ', '=', 1)->get();
+        $atelier = Item::where('id_categ', '=', 2)->get();
         array_push($tab, $vehicules);
         array_push($tab, $atelier);
         $vue = new VueCatalogue($tab);
