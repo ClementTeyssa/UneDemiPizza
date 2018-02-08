@@ -30,7 +30,7 @@ class VueCatalogue
         }
         switch ($selecteur){
             case  VueCatalogue::AFF_CATALOGUE:
-                $content = $this->index();
+                $content = $this->aff_catalogue();
         }
         return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
     }
@@ -73,5 +73,7 @@ end;
                 </table>
         <div class="s6">
 end;
+
+        return $content;
     }
 }
