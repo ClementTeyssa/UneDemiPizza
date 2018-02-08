@@ -41,6 +41,6 @@ class ControleurItem{
         $itemid =  $requete->post('idItem');
         $item = Item::getById($itemid);
         $date = $requete->post('the_date');
-
+        echo $date;
     }
 }
