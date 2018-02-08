@@ -32,6 +32,8 @@ class VuePageHTML{
 $(document).ready(function(){
     $('.fixed-action-btn.toolbar').openToolbar();
     $('.fixed-action-btn.toolbar').closeToolbar();
+    $('.carousel').carousel();
+    $('.carouse2').carousel();
 });
 </script>
         </head>
