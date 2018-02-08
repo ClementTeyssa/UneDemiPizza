@@ -6,6 +6,9 @@
 .metadata
 bin/
 tmp/
+vendor/
+*.lock
+*.phar
 *.tmp
 *.bak
 .classpath
