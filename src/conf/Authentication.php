@@ -21,8 +21,10 @@ class Authentication{
 		if($user != null) {
 			if(password_verify($password,$user->mdp)) {
 				self::loadProfile($mail);
+				\Slim\Slim::getInstance()->redirect(\Slim\Slim::getInstance()->urlFor("catalogue"));  
 			} else {
 				$app->redirect($app->urlFor("connexion"));
+				$_SESSION['message'] = "Erreur login ou mot de passe";
 			}
 		}else{
 			$app->redirect($app->urlFor("connexion"));
