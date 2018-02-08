@@ -23,8 +23,41 @@ class ControleurUser
      * Affichage de l'index
      */
     public function index(){
+    	
+    	//Recup tous les ids des items
+    	$items = Item::get();
+    	$ids;
+    	foreach ($items as $i){
+    		array_push($ids, $i->id);
+    	}
+    	
+    	//recup tous les ids des items reservés
+    	$reserve = Reservation::get();
+    	$reserves;
+    	foreach ($reserve as $r){
+    		array_push($reserves, $r);
+    	}
+    	
+    	//recup les ids des items non reservés
+    	$itemTrie = array_diff($ids, $reserves);
+    	
+    	$nonResV;
+    	$nonResA;
+    	
+    	foreach ($itemTrie as $iT){
+    		$obj = Item::getById($iT);
+    		if($obj->id_categ == 2){
+    			array_push($nonResA, $obj);
+    		}else{
+    			array_push($nonResV, $obj);
+    		}
+    	}
+    	$tab =array();
+    	array_push($tab, $nonResV);
+    	array_push($tab, $nonResA);
+    	
         $vue = new VueNavigation();
-        print $vue->render(VueNavigation::AFF_INDEX);
+        print $vue->render(VueNavigation::AFF_INDEX, $tab);
     }
     
     /*
