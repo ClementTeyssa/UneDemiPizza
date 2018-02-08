@@ -64,7 +64,7 @@ end;
         <main>
             <div class="container">
 end;
-        if($_SESSION['message']){
+        if(isset($_SESSION['message'])){
             $msg = $_SESSION['message'];
             $content .= <<<end
             <script>alert($msg)</script>
