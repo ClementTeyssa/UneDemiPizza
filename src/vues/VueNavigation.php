@@ -16,7 +16,7 @@ class VueNavigation
     public function render($selecteur, $tab = null)
     {
         switch ($selecteur){
-            case  AFF_INDEX :
+            case  VueNavigation::AFF_INDEX:
                 $content = $this->index();
         }
         return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
