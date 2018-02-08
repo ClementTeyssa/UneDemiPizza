@@ -7,6 +7,7 @@ use Slim\Slim;
 class VueItem{
 	
 	const AFF_ITEM = 1;
+	const AFF_RES = 2;
 	
 	private $objet;
 
@@ -15,7 +16,7 @@ class VueItem{
 		$this->objet = $obj;
 	}
 
-	public function render($selecteur, $obj)
+	public function render($selecteur, $obj = null)
 	{
 		$content=null;
 		if(isset($obj)){
@@ -24,6 +25,10 @@ class VueItem{
 		switch ($selecteur){
 			case  VueItem::AFF_ITEM:
 				$content = $this->aff_item_entete();
+				break;
+            case VueItem::AFF_RES:
+                $content = $this->aff_item_res();
+                break;
 		}
 		return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
 	}
@@ -56,8 +61,9 @@ end;
                   });
                 </script>";
         // TODO: Faire le lien de l'action
+        $r_item = $app->urlFor("itemR");
         $content .= <<<end
-                <form id="form_item" method="POST" action="">
+                <form id="form_item" method="POST" action="$r_item">
                             <label>Date à reserver</label>
                             <input type="hidden" name="idItem" value="$id">
                             <input type="date" name="the_date">
@@ -69,4 +75,24 @@ end;
 
 		return $content;
 	}
+
+	public function aff_item_res(){
+
+        return <<<end
+        <h1 class="center-align">Reservation</h1>
+        <div class="row center-align">
+            <div class="col s6">
+                <form id="form_itemRes" method="POST" action="$r_item">
+                    
+                </form>
+            </div>
+            <div class="col s6">
+                <form id="form_itemRes" method="POST" action="$r_item">
+                    
+                </form>
+            </div>
+        </div>
+end;
+
+    }
 }
