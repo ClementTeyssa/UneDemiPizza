@@ -45,7 +45,13 @@ $app->get('/connexion(/)', function (){
  *                          Traitement
  * ==============================================================
  */
+$app->post('/inscription(/)', function (){
+    (new pizza\controleurs\ControleurUser())->inscriptionT();
+})->name("inscriptionT");
 
+$app->post('/connexion(/)', function (){
+    (new pizza\controleurs\ControleurUser())->connexionT();
+})->name("connexionT");
 
 
 /*
