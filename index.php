@@ -38,6 +38,9 @@ $app->get('/connexion(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexion();
 })->name("connexion");
 
+$app->get('/catalogue/edition(/)', function (){
+    (new pizza\controleurs\ControleurItem())->edition();
+})->name("editionItem");
 
 $app->post('/item(/)', function (){
     (new \pizza\controleurs\ControleurItem())->aff_item();
@@ -64,6 +67,10 @@ $app->post('/connexionT(/)', function (){
 $app->get('/deconnexion(/)', function (){
     (new pizza\conf\Authentication())->deconnexion();
 })->name("deconnexion");
+
+$app->post('/itemDelete(/)', function (){
+    (new \pizza\controleurs\ControleurItem())->supprimer_item();
+})->name("itemDelete");
 
 
 
