@@ -27,6 +27,7 @@ class VueItem{
 	
 	
 	public function aff_item_entete(){
+		
 		$nom = $this->objet->nom;
 		$id = $this->objet->id;
 		$desc = $this->objet->description;
