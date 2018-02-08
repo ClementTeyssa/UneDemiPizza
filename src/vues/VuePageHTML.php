@@ -39,13 +39,14 @@ end;
     public static function getHeaderFin(){
         $app =  \Slim\Slim::getInstance();
         $inscr = $app->urlFor("inscription");
+        $co = $app->urlFor("connexion");
         return <<<end
           <nav>
             <div class="nav-wrapper">
               <a href="$inscr" class="brand-logo center">Accueil</a>
               <ul class="left hide-on-med-and-down">
-                <li><a href="#">Connexion Administrateur</a></li>
-                <li><a href="#">Connexion</a></li>
+                <li><a href="$co">Connexion Administrateur</a></li>
+                <li><a href="$co">Connexion</a></li>
                 <li><a href="$inscr">inscription</a></li>
               </ul>
             </div>
@@ -69,7 +70,7 @@ end;
              <div class="col s3">TEYSSANDIER Clément</div>
         </div>
         <div class="row">
-             <div class="col s3">OBERHAUSSER Lucas</div>
+             <div class="col s3">OBERHAUSSER Ober</div>
              <div class="col s3">REMOIVILLE Guerric</div>
              <div class="col s3">HUBERT Baptiste</div>
         </div>

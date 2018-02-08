@@ -34,6 +34,12 @@ $app->get('/catalogue(/)', function (){
     (new pizza\controleurs\ControleurCatalogue())->aff_catalogue();
 })->name("catalogue");
 
+$app->get('/connexion(/)', function (){
+    (new pizza\controleurs\ControleurUser())->connexion();
+})->name("connexion");
+
+
+
 /*
  * ==============================================================
  *                          Traitement
