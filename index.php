@@ -30,7 +30,9 @@ $app->get('/inscription(/)', function (){
     (new pizza\controleurs\ControleurUser())->inscription();
 })->name("inscription");
 
-
+$app->get('/catalogue(/)', function (){
+    (new pizza\controleurs\ControleurCatalogue())->aff_catalogue();
+})->name("catalogue");
 
 /*
  * ==============================================================

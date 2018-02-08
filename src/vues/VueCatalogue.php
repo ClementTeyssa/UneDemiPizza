@@ -36,6 +36,10 @@ class VueCatalogue
     }
 
     public function aff_catalogue(){
+        return "<h1>Catalogue</h1><br><br>".$this->aff_catalogue_v();
+    }
+
+    private function aff_catalogue_v(){
         $content =  <<<end
         <div class="row">
             <div class="s6">
@@ -50,23 +54,24 @@ class VueCatalogue
                         <th>Reserver</th>
                     </tr>
 end;
-        $items = $this->objet[0];
-        foreach ($items as $item){
+        $vehicules = $this->objet[0];
+        foreach ($vehicules as $item){
             $vehicule = Item::getById($item);
             if($vehicule->id_categ == 1){
                 $nom = $vehicule->nom;
                 $desc = $vehicule->description;
                 $content = <<<end
-                <td>$nom</td>
-                <td>$desc</td>
-                <td>BOUTON A FAIRE</td>
+                <tr>
+                    <td>$nom</td>
+                    <td>$desc</td>
+                    <td>BOUTON A FAIRE</td>
+                </tr>
 end;
             }
         }
-        $content = <<<end
+        $content .= <<<end
                 </table>
+        <div class="s6">
 end;
-
-
     }
 }

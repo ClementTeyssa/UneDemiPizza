@@ -2,6 +2,8 @@
 
 namespace pizza\vues;
 
+use Slim\Slim;
+
 class VueNavigation
 {
     const AFF_INDEX = 1;
@@ -28,7 +30,13 @@ class VueNavigation
     }
 
     private function index(){
-        return "<h1>Index</h1>";
+        $app = Slim::getInstance();
+        $catalogue = $app->urlFor('catalogue');
+        return <<<end
+        <h1>Accueil</h1>
+        <br>
+        <a href="$catalogue">Accéder au catalogue</a>
+end;
     }
     
     private function inscription(){
