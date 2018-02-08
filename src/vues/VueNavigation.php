@@ -19,6 +19,10 @@ class VueNavigation
 
     public function render($selecteur, $tab = null)
     {
+    	$content=null;
+    	if(isset($tab)){
+    		$this->objet = $tab;
+    	}
         switch ($selecteur){
             case VueNavigation::AFF_INDEX:
                 $content = $this->index();

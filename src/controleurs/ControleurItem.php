@@ -45,6 +45,14 @@ class ControleurItem{
 		print $vue->render(VueItem::AFF_ITEM, $item);
 	}
 	
+	public function edition(){
+	    $app = \Slim\Slim::getInstance();
+	    $requete = $app->request();
+	    $id = $requete->post('idItem');
+	    if($id == "") echo "prout";
+	    echo "talut";
+	}
+	
 	public function ajouter_item($nom, $desc, $id_categ){
 		$i = new Item();
 		$i->description = $desc;
@@ -53,9 +61,13 @@ class ControleurItem{
 		$i->save();
 	}
 	
-	public function supprimer_item($id){
+	public function supprimer_item(){
+	    $app = \Slim\Slim::getInstance();
+	    $requete = $app->request();
+	    $id = $requete->post('idItem');
 		$item = Item::select()->where('id', '=', $id)->first();
 		$item->delete();
+		$app->redirect($app->urlFor('catalogue'));
 	}
 
 
