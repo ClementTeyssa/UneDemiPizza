@@ -1,5 +1,5 @@
 <?php
-namespace amphux\conf;
+namespace pizza\conf;
 use amphux\models\Enseignant;
 use amphux\models\Eleve;
 

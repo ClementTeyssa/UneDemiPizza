@@ -6,7 +6,7 @@
  * Time: 12:18
  */
 
-namespace amphux\conf;
+namespace pizza\conf;
 use Illuminate\Database\Capsule\Manager as DB;
 
 class ConnexionBase

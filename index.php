@@ -29,7 +29,7 @@ $app = new \Slim\Slim();
  * Affichage de l'accueil
  */
 $app->get('/', function (){
-    (new amphux\controleurs\ControleurUser())->index();
+    (new pizza\controleurs\ControleurUser())->index();
 })->name("accueil");
 
 

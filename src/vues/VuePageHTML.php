@@ -1,6 +1,6 @@
 <?php
 
-namespace amphux\vues;
+namespace pizza\vues;
 
 class VuePageHTML{
 

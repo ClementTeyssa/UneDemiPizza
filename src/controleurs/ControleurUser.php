@@ -6,7 +6,7 @@
  * Time: 14:25
  */
 
-namespace amphux\controleurs;
+namespace pizza\controleurs;
 
 use amphux\vues\VueNavigation;
 use amphux\conf\Authentication;
