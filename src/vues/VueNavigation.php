@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Clément Teyssandier
- * Date: 21/01/2018
- * Time: 14:15
- */
 
 namespace pizza\vues;
 
@@ -21,11 +15,15 @@ class VueNavigation
 
     public function render($selecteur, $tab = null)
     {
-        return VuePageHTML::getHeaders()."<h1>Index</h1>".VuePageHTML::getFooter();
+        switch ($selecteur){
+            case  AFF_INDEX :
+                $content = $this->index();
+        }
+        return VuePageHTML::getHeaders().$content.VuePageHTML::getFooter();
     }
 
     private function index(){
-
+        return "<h1>Index</h1>";
     }
 
 
