@@ -42,6 +42,4 @@ end;
     private function inscription(){
         return "<h1>Inscription oui</h1>";
     }
-
-
 }
