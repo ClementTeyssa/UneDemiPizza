@@ -21,7 +21,9 @@ class Authentication{
 		if($user != null) {
 			if(password_verify($password,$user->mdp)) {
 				self::loadProfile($mail);
+				$app->redirect($app->urlFor("accueil"));
 			} else {
+				$_SESSION['message'] = "Erreur login ou mot de passe";
 				$app->redirect($app->urlFor("connexion"));
 			}
 		}else{
@@ -40,7 +42,6 @@ class Authentication{
         array_push($tab, $role);
         $ccokie = serialize($tab);
         setcookie('profile', $ccokie, time()+60*60*24*30, "/");
-        $app->redirect($app->urlFor("accueil"));
 	}
 
 	public static function deconnexion(){

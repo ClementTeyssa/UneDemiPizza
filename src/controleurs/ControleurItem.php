@@ -46,4 +46,13 @@ class ControleurItem{
 		$item->delete();
 		$app->redirect($app->urlFor('catalogue'));
 	}
+
+	public function aff_item_res(){
+        $app = \Slim\Slim::getInstance();
+        $requete = $app->request();
+        $itemid =  $requete->post('idItem');
+        $item = Item::getById($itemid);
+        $date = $requete->post('the_date');
+        echo $date;
+    }
 }

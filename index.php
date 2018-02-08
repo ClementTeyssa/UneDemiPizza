@@ -46,6 +46,10 @@ $app->post('/item(/)', function (){
     (new \pizza\controleurs\ControleurItem())->aff_item();
 })->name("item");
 
+$app->post('/itemR(/)', function (){
+    (new \pizza\controleurs\ControleurItem())->aff_item_res();
+})->name("itemR");
+
 
 /*
  * ==============================================================
@@ -56,7 +60,7 @@ $app->post('/inscription(/)', function (){
     (new pizza\controleurs\ControleurUser())->inscriptionT();
 })->name("inscriptionT");
 
-$app->post('/connexion(/)', function (){
+$app->post('/connexionT(/)', function (){
     (new pizza\controleurs\ControleurUser())->connexionT();
 })->name("connexionT");
 
