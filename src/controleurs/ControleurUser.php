@@ -59,4 +59,13 @@ class ControleurUser
         }
         $app->redirect($app->urlFor("accueil"));
     }
+    
+    public function connexionT(){
+        $app = \Slim\Slim::getInstance();
+        $requete = $app->request();
+        $email = filter_var($requete->post('mailCo'), FILTER_SANITIZE_EMAIL);
+        $mdp = $requete->post('mdpCo');
+        Authentication::authenticate($email, $mdp);
+        //$app->redirect($app->urlFor("accueil"));
+    }
 }

@@ -49,6 +49,10 @@ $app->post('/inscription(/)', function (){
     (new pizza\controleurs\ControleurUser())->inscriptionT();
 })->name("inscriptionT");
 
+$app->post('/connexion(/)', function (){
+    (new pizza\controleurs\ControleurUser())->connexionT();
+})->name("connexionT");
+
 
 /*
  * Lancement de Slim

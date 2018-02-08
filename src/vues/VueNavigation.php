@@ -65,12 +65,12 @@ end;
                 <br/>
                 <label class="black-text">Mot de passe</label>
                  <div class="input-field">
-                    <input placeholder="mot de passe"  type="password" name="mdpInscr1" required>
+                    <input placeholder="mot de passe"  type="password" name="mdp1Inscr" required>
                  </div>
                  <br/>
                  <label class="black-text">Répeter mot de passe</label>
                  <div class="input-field">
-                    <input placeholder="mot de passe"  type="password" name="mdpInscr2" required>
+                    <input placeholder="mot de passe"  type="password" name="mdp2Inscr" required>
                  </div>
              </div>
             <button type="submit" name="Se connecter" value="formCo">Se connecter</button>
