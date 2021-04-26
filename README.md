@@ -1,5 +1,6 @@
-#Une part de pizza ?
+# Une part de pizza ?
 
-Depot de l'équipe "Une part de pizza ?"
-du crazy charly day
-Pour une question de temps, nous avons choisis que les personnes puissent réserver par jour (de 0h00 à 23h59)
+Release for IUT Charlemagne hackathon Crazy Charly Day, February 2018
+Team : Une part de pizza ?
+
+Using illuminate/database and slim with PHP 7
